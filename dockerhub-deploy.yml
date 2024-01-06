@@ -26,7 +26,7 @@ jobs:
       uses: docker/build-push-action@v2
       with:
         context: .  # Dockerfile'ın bulunduğu konum.
-        file: ./TodoApi/Dockerfile
+        file: TodoApi/Dockerfile 
         push: true
         tags: muratvuranok/todoapp:latest  # Docker Hub'da oluşturulacak image tag'i.
 
