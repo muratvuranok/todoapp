@@ -2,16 +2,16 @@
 
 on:
   push:
-    branches: [ main ]  # main branch'e push yapıldığında tetiklenir.
+    branches: [ main ]
   pull_request:
     branches: [ main ]
 
 jobs:
   build-and-push:
-    runs-on: ubuntu-latest  # Çalışma ortamı
+    runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2  # Repo klonlanır.
+    - uses: actions/checkout@v2
 
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v1
@@ -19,17 +19,16 @@ jobs:
     - name: Login to DockerHub
       uses: docker/login-action@v1
       with:
-        username: ${{ secrets.DOCKERHUB_USERNAME }}  # GitHub secrets'tan Docker Hub kullanıcı adı.
-        password: ${{ secrets.DOCKERHUB_PASSWORD }}  # GitHub secrets'tan Docker Hub şifre.
+        username: ${{ secrets.DOCKERHUB_USERNAME }}
+        password: ${{ secrets.DOCKERHUB_PASSWORD }}
 
     - name: Build and push
       uses: docker/build-push-action@v2
       with:
-        context: .  # Dockerfile'ın bulunduğu konum.
-        file: TodoApi/Dockerfile 
+        context: .  
+        file: TodoApi/TodoApi/Dockerfile  # Dockerfile yolu güncellendi.
         push: true
-        tags: muratvuranok/todoapp:latest  # Docker Hub'da oluşturulacak image tag'i.
+        tags: muratvuranok/todoapp:latest
 
     - name: Docker Image CI
-      run: docker run muratvuranok/todoapp:latest  # Image'ı test etmek için çalıştır.
-      
+      run: docker run muratvuranok/todoapp:latest
