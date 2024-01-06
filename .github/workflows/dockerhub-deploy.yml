@@ -26,7 +26,7 @@ jobs:
       uses: docker/build-push-action@v2
       with:
         context: .  
-        file: TodoApi/TodoApi/Dockerfile  # Dockerfile yolu güncellendi.
+        file: TodoApi/Dockerfile  # Dockerfile yolu güncellendi.
         push: true
         tags: muratvuranok/todoapp:latest
 
