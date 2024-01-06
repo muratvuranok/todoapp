@@ -1,0 +1,34 @@
+﻿name: Docker Hub Deploy
+
+on:
+  push:
+    branches: [ main ]  # main branch'e push yapıldığında tetiklenir.
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest  # Çalışma ortamı
+
+    steps:
+    - uses: actions/checkout@v2  # Repo klonlanır.
+
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v1
+
+    - name: Login to DockerHub
+      uses: docker/login-action@v1
+      with:
+        username: ${{ secrets.DOCKERHUB_USERNAME }}  # GitHub secrets'tan Docker Hub kullanıcı adı.
+        password: ${{ secrets.DOCKERHUB_PASSWORD }}  # GitHub secrets'tan Docker Hub şifre.
+
+    - name: Build and push
+      uses: docker/build-push-action@v2
+      with:
+        context: .  # Dockerfile'ın bulunduğu konum.
+        file: ./Dockerfile
+        push: true
+        tags: yourusername/todoapp:latest  # Docker Hub'da oluşturulacak image tag'i.
+
+    - name: Docker Image CI
+      run: docker run yourusername/todoapp:latest  # Image'ı test etmek için çalıştır.

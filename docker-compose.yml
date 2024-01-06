@@ -1,0 +1,29 @@
+﻿version: '3.8'
+
+services:
+  todoapi:
+    image: muratvuranok/todoapp:latest  # Docker Hub'daki image'iniz.
+    container_name: TodoApi
+    depends_on:
+      - db
+    environment:
+      - ConnectionStrings__DefaultConnection=Server=db;Database=TodoDb;User=sa;Password=Pro247!!;  
+    ports:
+      - "80:80"  # Host ve container port eşleşmesi.
+    networks:
+      - todo-network  # Özel ağa bağlantı.
+
+  db:
+    image: mcr.microsoft.com/mssql/server:2019-latest  # SQL Server image'i.
+    container_name: TodoDb
+    environment:
+      SA_PASSWORD: "Pro247!!"  # Veritabanı şifresi.
+      ACCEPT_EULA: "Y"  # Lisans anlaşmasını kabul edin.
+    ports:
+      - "1433:1433"  # SQL Server için port eşleşmesi.
+    networks:
+      - todo-network  # Özel ağa bağlantı.
+
+networks:
+  todo-network:  # Özel ağ tanımı.
+    driver: bridge
