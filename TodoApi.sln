@@ -10,6 +10,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		docker-compose.yml = docker-compose.yml
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github", ".github", "{027B1EE0-2BA0-42A8-919C-41A261180C5A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{48180758-C6A7-4382-AA7C-BD9FFC6B00F2}"
+	ProjectSection(SolutionItems) = preProject
+		dockerhub-deploy.yml = dockerhub-deploy.yml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,6 +30,9 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{48180758-C6A7-4382-AA7C-BD9FFC6B00F2} = {027B1EE0-2BA0-42A8-919C-41A261180C5A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E06ABC62-BF7A-4470-B831-1D9E0DFEB835}
