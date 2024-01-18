@@ -23,6 +23,7 @@ jobs:
         password: ${{ secrets.DOCKERHUB_PASSWORD }}
 
     - name: Build and push
+      run: echo "{name}={value}" >> $GITHUB_STATE
       uses: docker/build-push-action@v2
       with:
         context: .  
