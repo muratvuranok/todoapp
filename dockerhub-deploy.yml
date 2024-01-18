@@ -28,7 +28,9 @@ jobs:
         context: .  
         file: TodoApi/TodoApi/Dockerfile
         push: true
-        tags: muratvuranok/todoapp:latest
+        tags: muratvuranok/todoapp:${{ github.sha }}
+        cache-from: type=registry,ref=muratvuranok/todoapp:latest
+        cache-to: type=inline
 
     - name: Docker Image CI
-      run: docker run muratvuranok/todoapp:latest
+      run: docker run --rm muratvuranok/todoapp:latest  
